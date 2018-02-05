@@ -25,6 +25,11 @@ if ($unpub_date !== 0){
   //converto la data di spubblicazione in un timestamp
   $unpub_date_format = strtotime($unpub_date) ;
 
+  // cancello le vecchie righe per lo stesso id risorsa
+  $sql2 = 'DELETE FROM resoruce_unpub WHERE resource_id = '.$id;
+  $stmt2 = $modx->prepare($sql2);
+  $stmt2->execute();
+  
   //inserisco i dati nella tabella
   $sql = 'INSERT INTO resoruce_unpub (resource_id, unpub_date) VALUES ('.$id.', '.$unpub_date_format.' )';
   $stmt = $modx->prepare($sql);
